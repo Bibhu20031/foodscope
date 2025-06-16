@@ -24,7 +24,7 @@ interface ProductContextType{
     searchTerm: string;
     setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
     sortOption: string;
-    setSortOption: React.Dispatch<React.SetStateAction<string>>;
+    setSortOption: React.Dispatch<React.SetStateAction<string>>;  // importing Dispatch causes typescript error
 }
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
