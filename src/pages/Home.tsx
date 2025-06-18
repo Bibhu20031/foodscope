@@ -8,6 +8,7 @@ import SortDropdown from "../components/SortDropdown";
 import { useProductContext } from "../context/Product.Context";
 import { fetchProducts } from "../utils/fetchProducts";
 import { sortProducts } from "../utils/sortProducts";
+import BarcodeScanner from "../components/BarcodeScanner";
 
 const HomePage: React.FC = () => {
   const {
@@ -41,6 +42,7 @@ useEffect(() => {
         <SearchBar />
         <FilterDropdown />
         <SortDropdown />
+        <BarcodeScanner/>
       </div>
       <ProductList products={sortedProducts} />
     </div>
