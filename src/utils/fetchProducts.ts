@@ -2,25 +2,27 @@ import type { Product } from "../context/Product.Context";
 
 export async function fetchProducts(
   query: string,
-  category: string | '' 
+  category?: string
 ): Promise<Product[]> {
   try {
-    let url = '';
+    const searchParams = new URLSearchParams({
+      json: "true",
+      search_terms: query,
+      page_size: "50",
+    });
+
     if (category) {
-      url = `https://world.openfoodfacts.org/category/${category}.json`;
-    } else if (query) {
-      url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${query}&json=true`;
-    } else {
-      // fallback if neither
-      url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=food&json=true`;
+      searchParams.append("categories_tags", category);
     }
 
-    const res = await fetch(url);
-    const data = await res.json();
+    const res = await fetch(
+      `https://world.openfoodfacts.org/cgi/search.pl?${searchParams.toString()}`
+    );
 
+    const data = await res.json();
     return data.products as Product[];
   } catch (error) {
-    console.error(error);
-    return []; 
+    console.error("Fetch error:", error);
+    return [];
   }
 }

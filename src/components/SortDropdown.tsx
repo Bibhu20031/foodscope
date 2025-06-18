@@ -8,7 +8,7 @@ const SortDropdown: React.FC = () => {
   return (
     <select
       aria-label="Sort by"
-      className="p-2 mr-2 rounded-md border"
+      className="p-2 mr-2 rounded-md border bg-orange-400"
       value={sortOption}
       onChange={(e) => setSortOption(e.target.value)}
     >
